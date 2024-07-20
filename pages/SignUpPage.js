@@ -1,32 +1,48 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Dimensions, Alert } from "react-native";
+import React, {useEffect, useState} from 'react';
+import {View, StyleSheet, Dimensions, Image} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Button from '../components/Button';
-import Input from "../components/Input";
+import Input from '../components/Input';
 import Heading1 from '../components/Heading1';
 import Heading2 from '../components/Heading2';
 
 import axios from 'axios';
 
-const SignUpPage = ({ switchScreen }) => {
+const SignUpPage = ({switchScreen}) => {
   const [customerId, setCustomerId] = useState('');
+
+  const checkLicenseCode = async () => {
+    try {
+      /*const userId = await AsyncStorage.getItem('userId');
+      if (userId) {
+        switchScreen('Home');
+      }*/
+      switchScreen('SignUpSuccess');
+    } catch (error) {
+      console.error('Error checking license code:', error.message);
+    }
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-
+        <Image source={require('../assets/logo.png')} style={styles.logo} />
       </View>
       <Heading2 style={styles.h2}>Get Started with</Heading2>
-      <Heading1 style={styles.h1}>HR PRO2 ESS</Heading1>
+      <Heading1 style={styles.h1}>HRPRO2e</Heading1>
       <Input
-        inputText="Enter your Customer ID"
+        inputText="Enter your License Code"
         value={customerId}
         onChangeText={setCustomerId}
         textColor="#000"
         keyboardType="default"
         style={styles.input}
       />
-      <Button title="Continue" style={styles.button} />
+      <Button
+        title="Continue"
+        onPress={checkLicenseCode}
+        style={styles.button}
+      />
     </View>
   );
 };
@@ -38,33 +54,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center', // Center children horizontally
     backgroundColor: '#FAFAFA',
     width: screenWidth,
     height: screenHeight,
     padding: 20,
   },
   logoContainer: {
-    position: 'absolute',
-    top: 50, // Adjust this value to position the logo properly
     alignItems: 'center',
+    marginBottom: 80,
   },
-  logoText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#A33B3B', // Adjust this color to match your logo
+  logo: {
+    width: 95,
+    height: 95,
+    resizeMode: 'contain',
   },
   h2: {
-    marginTop: 150,
+    marginTop: 20,
     marginBottom: 10,
-    marginLeft: 35,// Updated marginBottom value
+    textAlign: 'center',
   },
   h1: {
-    marginBottom: 40,
-    marginLeft: 35,// Updated marginBottom value
+    marginBottom: 80,
+    textAlign: 'center',
+  },
+  input: {
+    marginBottom: 20,
   },
   button: {
     alignSelf: 'center',
-    marginTop: 150,
+    marginTop: 100,
   },
 });
 
