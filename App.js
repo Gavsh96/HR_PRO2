@@ -1,27 +1,35 @@
 import React, {useState} from 'react';
-import SignUpPage from './pages/SignUpPage';
 import 'react-native-gesture-handler';
 import {View} from 'react-native';
-import SucessfulSignUpPage from './pages/SuccessfulSignUpPage';
-import UnsucessfulSignUpPage from './pages/UnsuccessfulSignUpPage';
-
-// Import other screens if you have
+import SplashScreen from './pages/SplashScreen';
+import SignUpPage from './pages/SignUp/SignUpPage';
+import SucessfulSignUpPage from './pages/SignUp/SuccessfulSignUpPage';
+import UnsucessfulSignUpPage from './pages/SignUp/UnsuccessfulSignUpPage';
+import LoginPage from './pages/Login/LoginPage';
+import LoginUnsuccessfulPage from './pages/Login/LoginUnsuccessfulPage';
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState('SignUp');
+  const [currentScreen, setCurrentScreen] = useState('SplashScreen');
 
   const switchScreen = screenName => {
     setCurrentScreen(screenName);
   };
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View style={{flex: 1}}>
+      {currentScreen === 'SplashScreen' && (
+        <SplashScreen switchScreen={switchScreen} />
+      )}
       {currentScreen === 'SignUp' && <SignUpPage switchScreen={switchScreen} />}
       {currentScreen === 'SignUpSuccess' && (
         <SucessfulSignUpPage switchScreen={switchScreen} />
       )}
       {currentScreen === 'SignUpUnSuccess' && (
         <UnsucessfulSignUpPage switchScreen={switchScreen} />
+      )}
+      {currentScreen === 'Login' && <LoginPage switchScreen={switchScreen} />}
+      {currentScreen === 'LoginUnSuccess' && (
+        <LoginUnsuccessfulPage switchScreen={switchScreen} />
       )}
     </View>
   );

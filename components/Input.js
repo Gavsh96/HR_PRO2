@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#357ED9', // Adjust color to match the underline color in the image
     fontSize: 16,
     marginTop: 8,
+    marginBottom: 10,
   },
 });
 

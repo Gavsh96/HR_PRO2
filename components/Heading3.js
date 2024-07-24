@@ -8,7 +8,7 @@ const Heading3 = ({children, style}) => {
 const styles = StyleSheet.create({
   heading3: {
     fontSize: 18,
-    fontWeight: '400',
+    fontWeight: '300',
     color: '#357ED9',
     fontFamily: 'Sarabun',
     lineHeight: 20,
