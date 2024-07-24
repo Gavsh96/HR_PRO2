@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Dimensions, Image} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Button from '../../components/Button1';
 import Input from '../../components/Input';
 import Heading1 from '../../components/Heading1';
@@ -11,8 +10,7 @@ const SignUpPage = ({switchScreen}) => {
 
   const checkLicenseCode = async () => {
     try {
-      /*const userId = await AsyncStorage.getItem('userId');*/
-      if (licenseCode == '123') {
+      if (licenseCode === '123') {
         switchScreen('SignUpSuccess');
       } else {
         switchScreen('SignUpUnSuccess');
@@ -41,6 +39,7 @@ const SignUpPage = ({switchScreen}) => {
         title="Continue"
         onPress={checkLicenseCode}
         style={styles.button}
+        disabled={!licenseCode}
       />
     </View>
   );

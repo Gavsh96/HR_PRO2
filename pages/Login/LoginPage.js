@@ -13,8 +13,7 @@ const LoginPage = ({switchScreen}) => {
 
   const loginFunc = () => {
     try {
-      /*const userId = await AsyncStorage.getItem('userId');*/
-      if (userId == '123' && password == '123') {
+      if (userId === '123' && password === '123') {
         switchScreen('SignUpSuccess');
       } else {
         switchScreen('LoginUnSuccess');
@@ -47,7 +46,12 @@ const LoginPage = ({switchScreen}) => {
         textColor="#000"
         style={styles.input}
       />
-      <Button title="Login" onPress={loginFunc} style={styles.button} />
+      <Button
+        title="Login"
+        onPress={loginFunc}
+        style={styles.button}
+        disabled={!userId || !password}
+      />
     </View>
   );
 };
